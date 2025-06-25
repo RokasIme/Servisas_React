@@ -1,5 +1,5 @@
 export const mainMenuData = [
-    { href: '/', text: 'Home' },
-    { href: '/movies', text: 'Movies' },
-    { href: '/categories', text: 'Categories' },
+  { href: "/", text: "Home" },
+  { href: "/masters", text: "Masters" },
+  { href: "/workshops", text: "Workshops" },
 ];

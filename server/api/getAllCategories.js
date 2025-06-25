@@ -1,29 +1,29 @@
 import { connection } from "../db.js";
 
 export async function getAllCategories(req, res) {
-    try {
-        const sql = `
+  try {
+    const sql = `
             SELECT *,
                 ( 
                     SELECT COUNT(*)
-                    FROM movies
-                    WHERE movies.category_id = categories.id AND movies.is_published = 1
+                    FROM masters
+                    WHERE masters.category_id = categories.id AND masters.is_published = 1
                 ) AS count
             FROM categories
             WHERE is_published = 1
-            ORDER BY name;`;
-        const [result] = await connection.execute(sql);
-        return res.json({
-            status: 'success',
-            data: result,
-        });
-    } catch (error) {
-        console.log(error);
+            ORDER BY category;`;
+    const [result] = await connection.execute(sql);
+    return res.json({
+      status: "success",
+      data: result,
+    });
+  } catch (error) {
+    console.log(error);
 
-        return res.status(500).json({
-            status: 'error',
-            data: [],
-            msg: 'Serverio klaida',
-        });
-    }
+    return res.status(500).json({
+      status: "error",
+      data: [],
+      msg: "Serverio klaida",
+    });
+  }
 }
