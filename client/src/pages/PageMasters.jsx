@@ -2,17 +2,17 @@ import { useState } from "react";
 import { MovieList } from "../components/movies/MovieList";
 import { useEffect } from "react";
 
-export function PageMovies() {
+export function PageMasters() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5439/api/movies", {
+    fetch("http://localhost:5439/api/masters", {
       method: "GET",
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          setData(() => data.data);
+          setData(() => data.list);
         }
       })
       .catch(console.error);
@@ -21,7 +21,8 @@ export function PageMovies() {
   return (
     <>
       {/* FILTER */}
-      <MovieList data={data} />
+      {/* <MovieList data={data} /> */}
+      Masters Page
     </>
   );
 }
