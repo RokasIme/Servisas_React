@@ -1,15 +1,8 @@
 import { Link } from "react-router";
-// import { getAllLikes, getHeartColor } from "../../../../server/api/likes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 export function MastersCard({ data }) {
-  // const likesObj = await getAllLikes(data.id);
-  // let likes = likesObj[0].sum;
-  // likes === null ? (likes = 0) : likes;
-
-  // const user_id = this.req.user.id;
-  // const result = await getHeartColor(user_id, data.id);
-  // const like = +result[0]?.sum ? +result[0].sum : 0;
-
   return (
     <div className="col">
       <div className="card shadow-sm">
@@ -19,14 +12,15 @@ export function MastersCard({ data }) {
             src={"http://localhost:5439/img/masters/" + data.img}
             alt="Photo"
           />
-          {/* <div data-count={`${data.id}`} className="like-count">
-            {likes}
+          <div data-count={`${data.id}`} className="likeCount">
+            {data.likesCount}
           </div>
-          <i
+          <FontAwesomeIcon
+            // onClick={}
             data-push={`${data.id}`}
-            className={` ${like === 1 ? "heartColor" : ""} clickHeart fa fa-heart`}
-            aria-hidden="true"
-          ></i> */}
+            className={` ${data.heartColor === "1" ? "heartColor" : ""} clickHeart fa`}
+            icon={faHeart}
+          />
         </div>
         <div className="card-body">
           <h4 className="card-text">

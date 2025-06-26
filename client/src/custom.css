@@ -24,7 +24,7 @@ main {
   color: red;
 }
 
-.photo .like-count {
+.photo .likeCount {
   position: absolute;
   top: 8px;
   right: 15px;

@@ -1,6 +1,16 @@
+// import { useEffect, useState } from "react";
 import { MastersCard } from "./MastersCard";
 
 export function MastersList({ data }) {
+  // const [userLikes, setUserLikes] = useState([]);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:5439/api/userLikes")
+  //     .then((res) => res.json())
+  //     .then((data) => setUserLikes(() => data.list))
+  //     .catch();
+  // });
+
   return (
     <div className="container">
       <div id="movies" className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">

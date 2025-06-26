@@ -9,7 +9,9 @@ apiRouter.get("/categories", getAllCategories);
 apiRouter.get("/masters", getAllMasters);
 apiRouter.get("/masters/:category", getAllMasters);
 
-apiRouter.all("*error", (req, res) => {
+// apiRouter.get("/userLikes", getAllMasters);
+
+http: apiRouter.all("*error", (req, res) => {
   return res.status(404).json({
     status: "error",
     msg: "No such API route exists",
