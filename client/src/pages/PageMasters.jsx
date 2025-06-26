@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MovieList } from "../components/movies/MovieList";
+import { MastersList } from "../components/masters/MastersList";
 import { useEffect } from "react";
 
 export function PageMasters() {
@@ -21,8 +21,7 @@ export function PageMasters() {
   return (
     <>
       {/* FILTER */}
-      {/* <MovieList data={data} /> */}
-      Masters Page
+      <MastersList data={data} />
     </>
   );
 }

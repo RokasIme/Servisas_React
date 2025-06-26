@@ -7,6 +7,7 @@ export const apiRouter = express.Router();
 apiRouter.get("/categories", getAllCategories);
 
 apiRouter.get("/masters", getAllMasters);
+apiRouter.get("/masters/:category", getAllMasters);
 
 apiRouter.all("*error", (req, res) => {
   return res.status(404).json({

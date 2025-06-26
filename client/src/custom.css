@@ -2,17 +2,35 @@ main {
   min-height: calc(100vh - 13rem);
 }
 
-.movie-card-thumbnail {
-  object-fit: cover;
-  object-position: top;
+.photo {
+  width: 100%;
+  position: relative;
 }
-.movie-inner-thumbnail {
+
+.photo img {
   object-fit: cover;
   object-position: center;
-  max-height: 70vh;
+  height: 225px;
 }
-.movie-card-badge {
+
+.clickHeart {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 30px;
+  right: 10px;
+  color: #fff;
+  font-size: 1.2rem;
+}
+.photo i:hover {
+  color: red;
+}
+
+.photo .like-count {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  color: #fff;
+}
+
+.heartColor {
+  color: red;
 }
