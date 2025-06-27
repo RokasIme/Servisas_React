@@ -2,14 +2,22 @@
 import { MastersCard } from "./MastersCard";
 
 export function MastersList({ data }) {
+  // const [masters, setMasters] = useState([]);
   // const [userLikes, setUserLikes] = useState([]);
 
   // useEffect(() => {
+  //   fetch("http://localhost:5439/api/masters")
+  //     .then(res => res.json())
+  //     .then(data => setMasters(() => data.list))
+  //     .catch(console.error);
+  // }, []);
+
+  // useEffect(() => {
   //   fetch("http://localhost:5439/api/userLikes")
-  //     .then((res) => res.json())
-  //     .then((data) => setUserLikes(() => data.list))
-  //     .catch();
-  // });
+  //     .then(res => res.json())
+  //     .then(data => setUserLikes(() => data.list))
+  //     .catch(console.error);
+  // }, []);
 
   return (
     <div className="container">

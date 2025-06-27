@@ -1,5 +1,7 @@
 import { connection } from "../../server/db.js";
 
+// Logged in user ID  from context kai jis bus
+
 export async function getAllMasters(req, res) {
   try {
     const sql = `
