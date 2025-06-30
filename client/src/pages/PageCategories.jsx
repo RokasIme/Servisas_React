@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { PageTitle } from "../components/page-title/PageTitle";
 import { capitalize } from "../lib/capitalize";
+import { MastersList } from "../components/masters/MastersList";
 
 export function PageCategories() {
   const params = useParams();
@@ -23,6 +24,7 @@ export function PageCategories() {
   return (
     <div className="container">
       <PageTitle title={capitalize(params.category)} />
+      <MastersList data={mastersData} />
     </div>
   );
 }
