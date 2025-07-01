@@ -3,6 +3,8 @@ import cors from "cors";
 import helmet from "helmet";
 import { apiRouter } from "./routes/ApiRouter.js";
 import { PORT_CLIENT, PORT_SERVER } from "./env.js";
+import { cookieParser } from "./middleware/cookieParser.js";
+import { getUserData } from "./middleware/getUserData.js";
 
 const app = express();
 
@@ -13,6 +15,9 @@ app.use(
     limit: "4kb",
   })
 );
+
+app.use(cookieParser);
+app.use(getUserData);
 
 app.use(
   "/api",
