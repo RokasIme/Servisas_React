@@ -4,6 +4,7 @@ import {} from "react";
 
 export function PageWorkshops() {
   const [data, setData] = useState([]);
+  const [mastersData, setMastersData] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:5439/api/workshops", {
@@ -18,5 +19,17 @@ export function PageWorkshops() {
       .catch(console.error);
   }, []);
 
-  return <WorkshopsList data={data} />;
+  useEffect(() => {
+    fetch("http://localhost:5439/api/masters", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          setMastersData(() => data.list);
+        }
+      })
+      .catch(console.error);
+  }, []);
+  return <WorkshopsList data={data} masters={mastersData} />;
 }
