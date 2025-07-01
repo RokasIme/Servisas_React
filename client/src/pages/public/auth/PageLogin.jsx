@@ -4,38 +4,12 @@ import { PageTitle } from "../../../components/page-title/PageTitle";
 import { UserContext } from "../../../context/user/UserContext";
 
 export function PageLogin() {
-  const { isLoggedIn, logout } = useContext(UserContext);
-
-  function handleLogoutClick() {
-    fetch("http://localhost:5439/api/logout", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "success") {
-          logout();
-        }
-      })
-      .catch(console.error);
-  }
+  const { isLoggedIn } = useContext(UserContext);
 
   return (
     <div className="container">
       <PageTitle title="Login" />
-      {isLoggedIn ? (
-        <>
-          <p>
-            Einamuoju metu prisijungę vartotojai negali prisijungti prie kitos paskyros. Norėdami tą atlikti, visų pirma
-            atsijunkite nuo esamos paskyros.
-          </p>
-          <button onClick={handleLogoutClick} className="btn btn-danger">
-            Log out
-          </button>
-        </>
-      ) : (
-        <LoginForm />
-      )}
+      {isLoggedIn ? <LogoutForm /> : <LoginForm />}
     </div>
   );
 }

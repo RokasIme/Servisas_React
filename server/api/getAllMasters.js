@@ -11,7 +11,7 @@ export async function getAllMasters(req, res) {
                     (SELECT 
                   SUM(like_count)  
                   FROM likes
-                  WHERE likes.user_id = 4 AND likes.master_id = masters.id) AS heartColor
+                  WHERE likes.user_id=4 AND likes.master_id = masters.id) AS heartColor
         FROM masters
         INNER JOIN categories
         ON masters.category_id = categories.id
@@ -34,3 +34,31 @@ export async function getAllMasters(req, res) {
     });
   }
 }
+
+// export async function getAllMasters(req, res) {
+//   try {
+//     const sql = `
+//       SELECT masters.*, categories.category, categories.url_slug, workshops.workshop, city
+//       FROM masters
+//       INNER JOIN categories ON masters.category_id = categories.id
+//       INNER JOIN workshops ON masters.workshop_id = workshops.id
+//       WHERE masters.is_published = 1 AND categories.is_published = 1
+//     `;
+
+//     const likesSql = `
+//       SELECT master_id, user_id, like_count FROM likes
+//     `;
+
+//     const [masters] = await connection.execute(sql);
+//     const [likes] = await connection.execute(likesSql);
+
+//     return res.json({
+//       status: "success",
+//       masters,
+//       likes,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ status: "error", masters: [], likes: [] });
+//   }
+// }
