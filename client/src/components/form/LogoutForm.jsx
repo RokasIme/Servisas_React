@@ -5,7 +5,7 @@ export function LogoutForm() {
   const { logout } = useContext(UserContext);
 
   function handleLogoutClick() {
-    fetch("http://localhost:5437/api/admin/logout", {
+    fetch("http://localhost:5439/api/admin/logout", {
       method: "GET",
       credentials: "include",
     })

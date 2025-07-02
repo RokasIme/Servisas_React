@@ -7,6 +7,9 @@ import { PageRegister } from "./pages/public/auth/PageRegister";
 import { PageMasters } from "./pages/PageMasters";
 import { PageCategories } from "./pages/PageCategories";
 import { UserContextWrapper } from "./context/user/UserContextWrapper";
+import { PrivateLayout } from "./layout/PrivateLayout";
+import { PageDashboard } from "./pages/admin/PageDashboard";
+import { PageAllCategories } from "./pages/admin/PageAllCategories";
 
 export function App() {
   return (
@@ -20,6 +23,10 @@ export function App() {
             <Route path="/workshops" element={<PageWorkshops />} />
             <Route path="/register" element={<PageRegister />} />
             <Route path="/login" element={<PageLogin />} />
+          </Route>
+          <Route Component={PrivateLayout}>
+            <Route path="/admin" element={<PageDashboard />}></Route>
+            <Route path="/admin/categories" element={<PageAllCategories />} />
           </Route>
         </Routes>
       </BrowserRouter>

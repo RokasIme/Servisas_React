@@ -25,7 +25,7 @@ export function LoginForm() {
     setPasswordValidationState("");
     setPasswordValidationText("");
 
-    fetch("http://localhost:5439/api/login", {
+    fetch("http://localhost:5439/api/public/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

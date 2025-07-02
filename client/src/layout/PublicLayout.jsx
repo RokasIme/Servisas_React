@@ -3,11 +3,11 @@ import { Header } from "../components/header/Header";
 import { Footer } from "../components/footer/Footer";
 
 export function PublicLayout() {
-    return (
-        <>
-            <Header />
-            <Outlet />
-            <Footer isPublicPage={true} />
-        </>
-    )
+  return (
+    <>
+      <Header isPublicPage={true} />
+      <Outlet />
+      <Footer isPublicPage={true} />
+    </>
+  );
 }
