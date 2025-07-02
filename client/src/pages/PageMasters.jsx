@@ -26,22 +26,3 @@ export function PageMasters() {
     </>
   );
 }
-
-// const userId = 123; // prisijungusio vartotojo ID (pvz. iš context ar localStorage)
-
-// useEffect(() => {
-//   fetch("/api/masters")
-//     .then((res) => res.json())
-//     .then(({ masters, likes }) => {
-//       const mastersWithHearts = masters.map((master) => {
-//         const userLike = likes.find((like) => like.master_id === master.id && like.user_id === userId);
-//         return {
-//           ...master,
-//           likedByUser: !!userLike,
-//           likeCount: likes.filter((like) => like.master_id === master.id).reduce((sum, l) => sum + l.like_count, 0),
-//         };
-//       });
-
-//       setMasters(mastersWithHearts);
-//     });
-// }, []);
