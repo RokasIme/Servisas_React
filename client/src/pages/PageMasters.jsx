@@ -8,6 +8,7 @@ export function PageMasters() {
   useEffect(() => {
     fetch("http://localhost:5439/api/masters", {
       method: "GET",
+      credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => {
