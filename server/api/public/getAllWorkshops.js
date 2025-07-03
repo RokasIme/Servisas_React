@@ -1,4 +1,4 @@
-import { connection } from "../db.js";
+import { connection } from "../../db.js";
 
 export async function getAllWorkshops(req, res) {
   try {
@@ -16,7 +16,7 @@ export async function getAllWorkshops(req, res) {
 
     return res.status(500).json({
       status: "error",
-      data: [],
+      list: [],
       msg: "Serverio klaida",
     });
   }

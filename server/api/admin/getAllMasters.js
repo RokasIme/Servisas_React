@@ -1,24 +1,22 @@
-import { connection } from "../db.js";
+import { connection } from "../../db.js";
 
-// Logged in user ID  from context kai jis bus
-
-export async function getMastersByCategory(req, res) {
+export async function getAllMasters(req, res) {
   try {
     const sql = `
         SELECT masters.*, categories.category, categories.url_slug, workshops.workshop, city,
             (SELECT SUM(like_count) FROM likes
               WHERE likes.master_id = masters.id) AS likesCount,
                     (SELECT 
-                  SUM(like_count)  
+                  IFNULL(SUM(like_count), 0)  
                   FROM likes
-                  WHERE likes.user_id = 4 AND likes.master_id = masters.id) AS heartColor
+                  WHERE likes.user_id=? AND likes.master_id = masters.id) AS heartColor
         FROM masters
         INNER JOIN categories
         ON masters.category_id = categories.id
         INNER JOIN workshops
         ON masters.workshop_id = workshops.id
-        WHERE masters.is_published = 1 AND categories.is_published = 1 AND categories.url_slug = ?`;
-    const [result] = await connection.execute(sql, [req.params.category]);
+        `;
+    const [result] = await connection.execute(sql, [req.user.id]);
 
     return res.json({
       status: "success",

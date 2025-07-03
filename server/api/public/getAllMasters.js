@@ -1,25 +1,8 @@
-import { connection } from "../../server/db.js";
+import { connection } from "../../db.js";
 
 export async function getAllMasters(req, res) {
+  const userId = req.user?.id ?? 0;
   try {
-    const loginToken = req.cookies?.loginToken ?? null;
-    let userId = 0;
-    let tokenResult = [];
-
-    if (loginToken) {
-      [tokenResult] = await connection.execute(
-        `
-        SELECT user_id
-        FROM tokens
-        WHERE text = ?`,
-        [loginToken]
-      );
-    }
-
-    if (tokenResult.length > 0) {
-      userId = tokenResult[0].user_id;
-    }
-
     const sql = `
         SELECT masters.*, categories.category, categories.url_slug, workshops.workshop, city,
             (SELECT SUM(like_count) FROM likes

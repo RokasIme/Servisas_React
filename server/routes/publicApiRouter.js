@@ -3,9 +3,8 @@ import { postRegister } from "../api/public/postRegister.js";
 import { postLogin } from "../api/public/postLogin.js";
 import { getLogin } from "../api/public/getLogin.js";
 import { getAllCategories } from "../api/public/getAllCategories.js";
-import { getAllMasters } from "../api/getAllMasters.js";
-import { getMastersByCategory } from "../api/getMastersByCategory.js";
-import { getAllWorkshops } from "../api/getAllWorkshops.js";
+import { getAllMasters } from "../api/public/getAllMasters.js";
+import { getAllWorkshops } from "../api/public/getAllWorkshops.js";
 
 export const publicApiRouter = express.Router();
 
@@ -16,7 +15,6 @@ publicApiRouter.get("/login", getLogin);
 publicApiRouter.get("/categories", getAllCategories);
 
 publicApiRouter.get("/masters", getAllMasters);
-publicApiRouter.get("/masters/:category", getMastersByCategory);
 
 publicApiRouter.get("/workshops", getAllWorkshops);
 

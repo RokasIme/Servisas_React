@@ -1,36 +1,12 @@
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { WorkshopsList } from "../../components/workshops/WorkshopsList";
 import {} from "react";
+import { MastersContext } from "../../context/masters/MastersContext";
+import { WorkshopsContext } from "../../context/workshops/workshopsContext";
 
 export function PageWorkshops() {
-  const [data, setData] = useState([]);
-  const [mastersData, setMastersData] = useState([]);
+  const { publicMasters } = useContext(MastersContext);
+  const { workshops } = useContext(WorkshopsContext);
 
-  useEffect(() => {
-    fetch("http://localhost:5439/api/public/workshops", {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "success") {
-          setData(() => data.list);
-        }
-      })
-      .catch(console.error);
-  }, []);
-
-  useEffect(() => {
-    fetch("http://localhost:5439/api/public/masters", {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "success") {
-          setMastersData(() => data.list);
-        }
-      })
-      .catch(console.error);
-  }, []);
-  return <WorkshopsList data={data} masters={mastersData} />;
+  return <WorkshopsList data={workshops} masters={publicMasters} />;
 }

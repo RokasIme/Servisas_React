@@ -33,47 +33,53 @@ import { PageNewWorkshop } from "./pages/admin/workshops/PageNewworkshop";
 import { PageEditWorkshop } from "./pages/admin/workshops/PageEditWorkshop";
 
 import { PageNotFound } from "./pages/PageNotFound";
+import { MastersContextWrapper } from "./context/masters/MastersContextWrapper";
+import { WorkshopsContextWrapper } from "./context/workshops/WorkshopsContextWrapper";
 
 export function App() {
   return (
     <UserContextWrapper>
       <CategoriesContextWrapper>
-        <BrowserRouter>
-          <Routes>
-            <Route Component={PublicLayout}>
-              <Route index path="/" element={<PageHome />} />
-              <Route path="/masters" element={<PageMasters />} />
-              <Route path="/masters/:category" element={<PageCategories />} />
-              <Route path="/workshops" element={<PageWorkshops />} />
-              <Route path="/register" element={<PageRegister />} />
-              <Route path="/login" element={<PageLogin />} />
-            </Route>
-            <Route Component={PrivateLayout}>
-              <Route path="/admin" element={<PageDashboard />} />
-              <Route path="/admin/categories" element={<PageAllCategories />} />
-              <Route path="/admin/categories/new" element={<PageNewCategory />} />
-              <Route path="/admin/categories/published" element={<PagePublishedCategories />} />
-              <Route path="/admin/categories/draft" element={<PageDraftCategories />} />
-              <Route path="/admin/categories/:category" element={<PageEditCategory />} />
-              <Route path="/admin/categories/:category/edit" element={<PageEditCategory />} />
+        <WorkshopsContextWrapper>
+          <MastersContextWrapper>
+            <BrowserRouter>
+              <Routes>
+                <Route Component={PublicLayout}>
+                  <Route index path="/" element={<PageHome />} />
+                  <Route path="/masters" element={<PageMasters />} />
+                  <Route path="/masters/:category" element={<PageCategories />} />
+                  <Route path="/workshops" element={<PageWorkshops />} />
+                  <Route path="/register" element={<PageRegister />} />
+                  <Route path="/login" element={<PageLogin />} />
+                </Route>
+                <Route Component={PrivateLayout}>
+                  <Route path="/admin" element={<PageDashboard />} />
+                  <Route path="/admin/categories" element={<PageAllCategories />} />
+                  <Route path="/admin/categories/new" element={<PageNewCategory />} />
+                  <Route path="/admin/categories/published" element={<PagePublishedCategories />} />
+                  <Route path="/admin/categories/draft" element={<PageDraftCategories />} />
+                  <Route path="/admin/categories/:category" element={<PageEditCategory />} />
+                  <Route path="/admin/categories/:category/edit" element={<PageEditCategory />} />
 
-              <Route path="/admin/masters" element={<PageAllMasters />} />
-              <Route path="/admin/masters/new" element={<PageNewMaster />} />
-              <Route path="/admin/masters/published" element={<PagePublishedMasters />} />
-              <Route path="/admin/masters/draft" element={<PageDraftMasters />} />
-              <Route path="/admin/masters/:id" element={<PageEditMaster />} />
-              <Route path="/admin/masters/:id/edit" element={<PageEditMaster />} />
+                  <Route path="/admin/masters" element={<PageAllMasters />} />
+                  <Route path="/admin/masters/new" element={<PageNewMaster />} />
+                  <Route path="/admin/masters/published" element={<PagePublishedMasters />} />
+                  <Route path="/admin/masters/draft" element={<PageDraftMasters />} />
+                  <Route path="/admin/masters/:id" element={<PageEditMaster />} />
+                  <Route path="/admin/masters/:id/edit" element={<PageEditMaster />} />
 
-              <Route path="/admin/workshops" element={<PageAllWorkshops />} />
-              <Route path="/admin/workshops/new" element={<PageNewWorkshop />} />
-              <Route path="/admin/workshops/:id" element={<PageEditWorkshop />} />
-              <Route path="/admin/workshops/:id/edit" element={<PageEditWorkshop />} />
-            </Route>
-            <Route Component={PublicLayout}>
-              <Route path="*" element={<PageNotFound />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+                  <Route path="/admin/workshops" element={<PageAllWorkshops />} />
+                  <Route path="/admin/workshops/new" element={<PageNewWorkshop />} />
+                  <Route path="/admin/workshops/:id" element={<PageEditWorkshop />} />
+                  <Route path="/admin/workshops/:id/edit" element={<PageEditWorkshop />} />
+                </Route>
+                <Route Component={PublicLayout}>
+                  <Route path="*" element={<PageNotFound />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </MastersContextWrapper>
+        </WorkshopsContextWrapper>
       </CategoriesContextWrapper>
     </UserContextWrapper>
   );
