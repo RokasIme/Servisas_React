@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { WorkshopsList } from "../components/workshops/WorkshopsList";
+import { WorkshopsList } from "../../components/workshops/WorkshopsList";
 import {} from "react";
 
 export function PageWorkshops() {
@@ -7,7 +7,7 @@ export function PageWorkshops() {
   const [mastersData, setMastersData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5439/api/workshops", {
+    fetch("http://localhost:5439/api/public/workshops", {
       method: "GET",
     })
       .then((res) => res.json())
@@ -20,7 +20,7 @@ export function PageWorkshops() {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5439/api/masters", {
+    fetch("http://localhost:5439/api/public/masters", {
       method: "GET",
       credentials: "include",
     })

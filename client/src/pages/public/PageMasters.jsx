@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { MastersList } from "../components/masters/MastersList";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { MastersList } from "../../components/masters/MastersList";
 
 export function PageMasters() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5439/api/masters", {
+    fetch("http://localhost:5439/api/public/masters", {
       method: "GET",
       credentials: "include",
     })
