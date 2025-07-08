@@ -7,6 +7,10 @@ export function WorkshopsContextWrapper(props) {
   const [workshops, setWorkshops] = useState(initialWorkshopsContext.workshops);
 
   useEffect(() => {
+    fetchWorkshops();
+  }, []);
+
+  function fetchWorkshops() {
     fetch("http://localhost:5439/api/public/workshops", {
       method: "GET",
       credentials: "include",
@@ -18,7 +22,7 @@ export function WorkshopsContextWrapper(props) {
         }
       })
       .catch(console.error);
-  }, []);
+  }
 
   function setWorkshopsList(data) {
     setWorkshops(() => data);
@@ -32,6 +36,7 @@ export function WorkshopsContextWrapper(props) {
     workshops,
     setWorkshops,
     adminDeleteWorkshop,
+    fetchWorkshops,
   };
 
   return <WorkshopsContext.Provider value={value}>{props.children}</WorkshopsContext.Provider>;

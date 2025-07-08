@@ -36,7 +36,7 @@ export function MastersTableRow({ master }) {
       <td>{master.is_published ? <BadgeSuccess text="Published" /> : <BadgeDraft text="Draft" />}</td>
       <td>
         <div style={{ display: "flex", gap: "0.3rem" }}>
-          <Link className="btn btn-primary" to={`/admin/masters/${master.url_slug}/edit`}>
+          <Link className="btn btn-primary" to={`/admin/masters/${master.id}/edit`}>
             Edit
           </Link>
           <button onClick={handleDeleteClick} className="btn btn-danger" type="button">

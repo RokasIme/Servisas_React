@@ -15,6 +15,7 @@ export async function getAllMasters(req, res) {
         ON masters.category_id = categories.id
         INNER JOIN workshops
         ON masters.workshop_id = workshops.id
+        ORDER BY masters.id
         `;
     const [result] = await connection.execute(sql, [req.user.id]);
 
