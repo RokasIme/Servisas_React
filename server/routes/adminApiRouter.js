@@ -2,12 +2,18 @@ import express from "express";
 import { getLogout } from "../api/admin/getLogout.js";
 import { getAllCategories } from "../api/admin/getAllCategories.js";
 import { getAllMasters } from "../api/admin/getAllMasters.js";
+import { categoriesDelete } from "../api/admin/categoriesDelete.js";
+import { categoriesPost } from "../api/admin/categoriesPost.js";
+import { categoriesPut } from "../api/admin/categoriesPut.js";
 
 export const adminApiRouter = express.Router();
 
 adminApiRouter.get("/logout", getLogout);
 
 adminApiRouter.get("/categories", getAllCategories);
+adminApiRouter.post("/categories", categoriesPost);
+adminApiRouter.put("/categories/:id", categoriesPut);
+adminApiRouter.delete("/categories/:id", categoriesDelete);
 
 adminApiRouter.get("/masters", getAllMasters);
 
