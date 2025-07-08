@@ -11,35 +11,43 @@ export function MastersContextWrapper(props) {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      fetch("http://localhost:5439/api/public/masters", {
-        method: "GET",
-        credentials: "include",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === "success") {
-            setPublicMastersList(data.list);
-          }
-        })
-        .catch(console.error);
+      fetchPublicMasters();
     }
   }, [isLoggedIn]);
 
   useEffect(() => {
     if (isLoggedIn) {
-      fetch("http://localhost:5439/api/admin/masters", {
-        method: "GET",
-        credentials: "include",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === "success") {
-            setAdminMastersList(data.list);
-          }
-        })
-        .catch(console.error);
+      fetchAdminMasters();
     }
   }, [isLoggedIn]);
+
+  function fetchPublicMasters() {
+    fetch("http://localhost:5439/api/public/masters", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          setPublicMastersList(data.list);
+        }
+      })
+      .catch(console.error);
+  }
+
+  function fetchAdminMasters() {
+    fetch("http://localhost:5439/api/admin/masters", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          setAdminMastersList(data.list);
+        }
+      })
+      .catch(console.error);
+  }
 
   function setPublicMastersList(data) {
     setPublicMasters(() => data);
@@ -54,12 +62,18 @@ export function MastersContextWrapper(props) {
     setAdminMasters((list) => list.filter((m) => m.id !== id));
   }
 
+  function adminRefreshMasters() {
+    fetchPublicMasters();
+    fetchAdminMasters();
+  }
+
   const value = {
     publicMasters,
     adminMasters,
     setPublicMasters,
     setAdminMastersList,
     adminDeleteMaster,
+    adminRefreshMasters,
   };
 
   return <MastersContext.Provider value={value}>{props.children}</MastersContext.Provider>;

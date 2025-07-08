@@ -4,4 +4,5 @@ export const initialMastersContext = {
   setPublicMastersList: () => {},
   setAdminMastersList: () => {},
   adminDeleteMaster: () => {},
+  adminRefreshMasters: () => {},
 };

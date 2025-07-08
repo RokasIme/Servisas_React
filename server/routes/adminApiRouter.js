@@ -5,6 +5,10 @@ import { getAllMasters } from "../api/admin/getAllMasters.js";
 import { categoriesDelete } from "../api/admin/categoriesDelete.js";
 import { categoriesPost } from "../api/admin/categoriesPost.js";
 import { categoriesPut } from "../api/admin/categoriesPut.js";
+import { mastersDelete } from "../api/admin/mastersDelete.js";
+import { uploadImage } from "../middleware/uploadImage.js";
+import { apiUpload } from "../api/admin/apiUpload.js";
+import { mastersPost } from "../api/admin/mastersPost.js";
 
 export const adminApiRouter = express.Router();
 
@@ -16,6 +20,11 @@ adminApiRouter.put("/categories/:id", categoriesPut);
 adminApiRouter.delete("/categories/:id", categoriesDelete);
 
 adminApiRouter.get("/masters", getAllMasters);
+adminApiRouter.post("/masters", mastersPost);
+
+adminApiRouter.delete("/masters/:id", mastersDelete);
+
+adminApiRouter.post("/upload", uploadImage.single("thumbnail"), apiUpload);
 
 adminApiRouter.all("*error", (req, res) => {
   return res.status(404).json({

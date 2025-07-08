@@ -20,7 +20,10 @@ export async function getAllMasters(req, res) {
 
     return res.json({
       status: "success",
-      list: result,
+      list: result.map((m) => ({
+        ...m,
+        img: m.img ? `http://localhost:5439/img/masters/${m.img}` : "",
+      })),
     });
   } catch (error) {
     console.log(error);

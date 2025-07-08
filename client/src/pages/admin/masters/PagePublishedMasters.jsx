@@ -1,15 +1,15 @@
-// import { useContext } from "react";
+import { useContext } from "react";
 import { AdminTitle } from "../../../components/page-title/AdminTitle";
-// import { MoviesContext } from "../../../context/movies/MoviesContext";
-// import { MoviesTable } from "../../../components/table/MoviesTable";
+import { MastersContext } from "../../../context/masters/MastersContext";
+import { MastersTable } from "../../../components/table/MastersTable";
 
 export function PagePublishedMasters() {
-  // const { adminMovies } = useContext(MoviesContext);
+  const { adminMasters } = useContext(MastersContext);
 
   return (
     <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <AdminTitle title="Published masters" />
-      {/* <MoviesTable data={adminMovies.filter((m) => m.is_published)} /> */}
+      <MastersTable data={adminMasters.filter((m) => m.is_published)} />
     </main>
   );
 }

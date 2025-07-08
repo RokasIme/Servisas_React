@@ -8,9 +8,10 @@ export function MastersCard({ data }) {
       <div className="card shadow-sm">
         <div className="photo">
           <img
-            className="bd-placeholder-img card-img-top"
             src={"http://localhost:5439/img/masters/" + data.img}
             alt="Photo"
+            className="bd-placeholder-img card-img-top"
+            style={{ height: 225 }}
           />
           <div data-count={`${data.id}`} className="likeCount">
             {data.likesCount}
