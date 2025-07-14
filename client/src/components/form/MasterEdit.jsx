@@ -231,7 +231,7 @@ export function MasterEditForm() {
           <button className="btn btn-success btn-lg" type="submit">
             Update
           </button>
-          <button onClick={handleResetClick} className="btn btn-secondary btn-lg ms-auto" type="reset">
+          <button onClick={handleResetClick} className="btn btn-secondary btn-lg ms-auto" type="button">
             Reset
           </button>
         </div>
