@@ -1,8 +1,43 @@
 import { Link } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useContext, useState } from "react";
+import { UserContext } from "../../context/user/UserContext";
 
 export function MastersCard({ data }) {
+  const { userId, isLoggedIn } = useContext(UserContext);
+  const [liked, setLiked] = useState(data.heartColor === "1");
+  const [likesCount, setLikesCount] = useState(+data.likesCount);
+
+  const handleClick = async () => {
+    const action = liked ? -1 : 1;
+    const newLiked = !liked;
+
+    setLiked(newLiked);
+    setLikesCount((prev) => prev + action);
+
+    if (!isLoggedIn) return;
+    try {
+      await fetch("http://localhost:5439/api/admin/likes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          master_id: data.id,
+          user_id: userId,
+          like_change: action,
+        }),
+      });
+    } catch (err) {
+      console.error("Nepavyko atnaujinti like:", err);
+      // Atstatyk į pradinę būseną, jei nepavyko
+      setLiked(!newLiked);
+      setLikesCount((prev) => prev - action);
+    }
+  };
+
   return (
     <div className="col">
       <div className="card shadow-sm">
@@ -12,13 +47,10 @@ export function MastersCard({ data }) {
             alt="Photo"
             className="bd-placeholder-img card-img-top"
           />
-          <div data-count={`${data.id}`} className="likeCount">
-            {data.likesCount}
-          </div>
+          <div className="likeCount">{likesCount}</div>
           <FontAwesomeIcon
-            // onClick={}
-            data-push={`${data.id}`}
-            className={` ${data.heartColor === "1" ? "heartColor" : ""} clickHeart fa`}
+            onClick={handleClick}
+            className={`clickHeart fa ${liked ? "heartColor" : ""}`}
             icon={faHeart}
           />
         </div>
